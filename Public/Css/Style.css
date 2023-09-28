@@ -1,0 +1,13 @@
+.table{  
+    padding-left: 10px;
+    padding-right:10px ;
+}
+.table th{
+    text-align: center;
+    background-color: #000;
+    color: azure;
+}
+body{
+    color: azure;
+    background-color: #000;
+}

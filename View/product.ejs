@@ -1,0 +1,114 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+
+    <title>Home Page</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Backend Assignment</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://mrarthor.co/">About Me</a>
+                    </li>
+                    <% if(!currentUser) {%>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                        <% } else { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/cart">Cart</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/product">Product</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Logout</a>
+                            </li>
+
+                            <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <% if(success && success.length) {%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= success %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+        </div>
+        <% } %>
+            <% if(error && error.length) {%>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <%= error %>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+                </div>
+                <% } %>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <h1>Product</h1>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">Product Image</div>
+                            <div class="col-2">Product Name</div>
+                            <div class="col-2">Product Type</div>
+                            <div class="col-2">Price</div>
+                            <div class="col-2">Add To Wish List</div>
+                            <div class="col-2">Add To Cart</div>
+                        </div>
+                        <% for(var i=0;Products[i];i++){ %>
+                            <div class="row">
+                                <div class="col-2">
+                                    <% if(Products[i].image){ %>
+                                        <img src="<%=Products[i].image %>" alt="<%=Products[i].name%>" />
+                                        <% } %>
+
+                                </div>
+                                <div class="col-2">
+                                    <%=Products[i].name %>
+                                </div>
+                                <div class="col-2">
+                                    <%=Products[i].type %>
+                                </div>
+                                <div class="col-2">
+                                    <%=Products[i].price %>INR</div>
+                                <div class="col-2">
+                                    <a href="./Product/<%=Products[i]._id%>">
+                                    View Product</div></a>
+                                    <!-- <div class="col-2">
+                                        <p>add to cart</p>
+                                    </div> -->
+                                    <!-- <div class="col-3"><a href="/cart/add/<%=Products[i]._id%>">Yes</a></div> -->
+                                </div>
+
+                                <% } %>
+                                    </form>
+                            </div>
+
+                            <script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1/dist/es-module-shims.min.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
